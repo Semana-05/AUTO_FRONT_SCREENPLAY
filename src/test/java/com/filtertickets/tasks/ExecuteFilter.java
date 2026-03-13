@@ -34,9 +34,4 @@ public class ExecuteFilter implements Task {
                 .from(InitPage.PRIORITY_DROPDOWN)
         );
     }
-
-    @Override
-    public String toString() {
-        return "Ejecutar filtro de tickets por prioridad: " + priority;
-    }
 }

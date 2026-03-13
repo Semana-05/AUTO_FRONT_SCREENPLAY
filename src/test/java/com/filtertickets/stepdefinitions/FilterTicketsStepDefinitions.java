@@ -10,6 +10,7 @@ import com.filtertickets.util.Constants;
 
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import com.filtertickets.tasks.ExecuteFilter;
+import com.filtertickets.tasks.WaitForResults;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import com.filtertickets.questions.FilterApply;
@@ -33,7 +34,10 @@ public class FilterTicketsStepDefinitions {
     }
 
     @Then("only show tickets from priority {string}")
-    public void onlyShowTicketsFromPriority(String arg0) throws Throwable {
+    public void onlyShowTicketsFromPriority(String arg0) {
+        theActorInTheSpotlight().attemptsTo(
+            WaitForResults.toBeVisible()       
+        );
         theActorInTheSpotlight().should(
             seeThat(FilterApply.theDisplayedPriorities(),
                 everyItem(equalToIgnoringCase(arg0)))
